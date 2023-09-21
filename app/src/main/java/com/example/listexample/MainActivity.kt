@@ -41,28 +41,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Lazylistdemo()
-                    //normallist()
+                    //Lazylistdemo()
+                    normallist()
                 }
             }
         }
     }
 }
 
+//The app will not load due to the 100000
 @Composable
 fun normallist(){
-//    Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
-//        for (i in 1..500) {
-//            Text(text = "Row: $i")
-//        }
-//    }
+
     Column(verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier
         .padding(all = 10.dp)
         //.verticalScroll(rememberScrollState())
         ) {
         Text(text = "The first Item")
-        for(i in 1..500){
+        for(i in 1..10000){
             card(i)
         }
         Text(text = "The Last Item")
@@ -71,16 +68,11 @@ fun normallist(){
 
 @Composable
 fun Lazylistdemo() {
-//    LazyRow(horizontalArrangement = Arrangement.SpaceEvenly) {
-//        items(100) { index ->
-//            card(index)
-//        }
-//    }
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
             ){
         item { Text(text = "The First Item") }
-        items(500){ index -> card(index)
+        items(100000){ index -> card(index)
         }
         item { Text(text = "The Last Item", )}
     }
